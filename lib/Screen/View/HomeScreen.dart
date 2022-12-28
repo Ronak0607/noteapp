@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:noteapp/utils/firebase.dart';
 
@@ -24,7 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   insertdata(txtnote.text);
                 },
-                child: Text("ok"))
+                child: Text("ok")),
+            SizedBox(
+              height: 20,
+            ),
+            StreamBuilder(stream: readdata(),builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+              return Center(child: CircularProgressIndicator());
+            })
           ],
         ),
       ),
